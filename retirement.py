@@ -4,12 +4,12 @@ import random
 file_name = "output.csv"
 networth_start = 481  # Initial net worth
 salary = 0
-total_yearly_expense = 9.5  # Base yearly expense
+total_yearly_expense = 12  # Base yearly expense
 conversative_yearly_expense = 8
 startup_investment_yearly = 0
 taxes = 1
 failed = False
-write = True
+write = False
 total_growth = 0
 total_inflation = 0
 with open(file_name, mode='w', newline='') as file:
@@ -81,3 +81,13 @@ with open(file_name, mode='w', newline='') as file:
 if not failed:
     print(f"Networth sufficed for 60 years and left: {networth_left}")
 print(f"Average growth :" + str(round(total_growth/year, 2)) + " Average inflation: "+str(round(total_inflation/year,2)))
+
+#===================================================
+
+if failed:
+    # Sell one house
+    house_val = 130
+    less_than_average = 2
+    price = round((house_val*pow(1+ ((total_growth)/(year*100)) - 0.02, year)), 2)
+    print(f"Sold one house the net worth now is: "+str(price)+", monthly living expense now is: "+str(considered_expense))
+    print(f"Will last for approx " + str(round(price/considered_expense,2)) + " years")
